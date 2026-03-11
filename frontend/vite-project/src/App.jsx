@@ -24,7 +24,7 @@ function App() {
       setLoading(true);
       setMessage("Processing sales data...");
 
-      const response = await axios.post("http://127.0.0.1:8000/upload", formData);  
+      const response = await axios.post("https://sales-ai-automator.onrender.com/upload", formData);  
 
       setMessage("✅ Summary generated and email sent!");
 
