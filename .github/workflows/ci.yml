@@ -1,0 +1,51 @@
+name: AI Sales Automator CI
+
+on:
+push:
+branches: [ main ]
+
+pull_request:
+branches: [ main ]
+
+jobs:
+
+build:
+
+```
+runs-on: ubuntu-latest
+
+steps:
+
+  - name: Checkout Repository
+    uses: actions/checkout@v3
+
+  - name: Setup Python
+    uses: actions/setup-python@v4
+    with:
+      python-version: "3.11"
+
+  - name: Install Backend Dependencies
+    run: |
+      cd backend
+      pip install -r requirements.txt
+
+  - name: Check FastAPI App
+    run: |
+      cd backend
+      python -c "import main"
+
+  - name: Setup Node.js
+    uses: actions/setup-node@v3
+    with:
+      node-version: "18"
+
+  - name: Install Frontend Dependencies
+    run: |
+      cd frontend/vite-project
+      npm install
+
+  - name: Build Frontend
+    run: |
+      cd frontend/vite-project
+      npm run build
+```
